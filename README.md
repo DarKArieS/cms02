@@ -1,7 +1,7 @@
 # cms02
 some information about cms02
 
-● To use everything when you login:
+● To use something when you login:
 
 #To use CMSSW:
 
