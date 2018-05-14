@@ -1,0 +1,119 @@
+Ubuntu server 16.04 LTS
+
+● install ssh server
+sudo apt-get install openssh-server
+
+● install cmake
+sudo apt install cmake
+
+● check hardware
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
+sudo apt update
+sudo apt install ubuntu-drivers-common
+ubuntu-drivers devices
+#When installing CUDA9.0, the older compatible driver will be installed.
+
+● install CUDA toolkit 9.0 with driver (compatible for TensorFlow 1.8.0, don't use latest)
+# follow this page: https://developer.nvidia.com/cuda-90-download-archive
+# follow this page: http://developer.download.nvidia.com/compute/cuda/9.0/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf
+sudo sh cuda_9.0.176_384.81_linux.run
+sudo sh cuda_9.0.176.1_linux.run
+sudo sh cuda_9.0.176.2_linux.run
+sudo reboot -n
+
+export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64\
+ ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+nvidia-smi # check gpu info check gpu info with driver
+nvcc --version #check CUDA toolkit version
+ 
+● install CuDNN (Runtime version)
+#Download from: https://developer.nvidia.com/rdp/cudnn-download
+sudo dpkg -i libcudnn7_7.1.3.16-1+cuda9.0_amd64.deb
+
+● install python2.7 (for every users)
+sudo apt-get install python
+sudo apt-get install python-pip
+sudo pip install numpy
+sudo pip install pandas
+sudo pip install matplotlib 
+sudo pip install SciPy
+sudo pip install -U scikit-learn
+
+● install TensorFlow (v1.8 only supported by CUDA 9.0)
+# not install at virtualenv
+sudo pip install --upgrade tensorflow-gpu
+
+● install KERAS
+sudo pip install keras
+
+● install xgboost
+git clone --recursive https://github.com/dmlc/xgboost
+cd xgboost; make -j4
+#install gpu support (gcc versions later than 6 are not supported)
+cd xgboost/build
+cmake .. -DUSE_CUDA=ON #-DCUDA_HOST_COMPILER=/usr/bin/gcc-6
+make -j
+
+#install xgb on python
+cd python-package; sudo python setup.py install
+#verify
+python xgboost/tests/benchmark/benchmark_tree.py
+
+●install CernVM-FS:
+# reference:
+# https://cernvm.cern.ch/portal/filesystem/quickstart
+# https://cernvm.cern.ch/portal/filesystem/downloads
+
+sudo apt-get install lsb-release
+wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
+sudo dpkg -i cvmfs-release-latest_all.deb
+rm -f cvmfs-release-latest_all.deb
+sudo apt-get update
+sudo apt-get install cvmfs cvmfs-config-default
+sudo cvmfs_config setup
+#create "default.local" at /etc/cvmfs/, copy from "default.conf", and edit it!
+sudo cvmfs_config probe
+
+#to use cmssw:
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+
+●remove "welcome" when ssh login":
+sudo chmod -R 644 /etc/update-motd.d/
+
+●install local ROOT
+#install old version
+sudo apt-get install root-system
+#download latest binary from ROOT, and source it
+tar -xzvf root_v6.12.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
+source /ROOT6/bin/thisroot.sh
+#ROOT6 TMVA: should install:
+sudo apt-get install libatlas-base-dev
+#root_numpy
+sudo pip install root_numpy
+
+● install python3 (for every users)
+sudo apt-get install python3
+sudo apt-get install python3-pip
+sudo pip3 install numpy
+sudo pip3 install pandas
+sudo pip3 install matplotlib 
+sudo pip3 install SciPy
+sudo pip3 install -U scikit-learn
+sudo pip3 install --upgrade tensorflow-gpu
+sudo pip3 install root_numpy
+sudo pip3 install keras
+
+● To use everything when you login:
+#To use CMSSW:
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+
+#To use ROOT6 in local:
+source /ROOT6/bin/thisroot.sh
+
+export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64\
+ ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ 
+ 
