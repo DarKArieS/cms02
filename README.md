@@ -34,4 +34,5 @@ sklearn
 tensorflow-gpu
 keras
 root_numpy
+xgboost
 ```
