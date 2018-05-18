@@ -33,6 +33,7 @@ SciPy
 sklearn
 tensorflow-gpu
 keras
-root_numpy
+root_numpy (only for python2)
+root_pandas (only for python2)
 xgboost
 ```
