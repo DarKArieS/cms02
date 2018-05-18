@@ -22,7 +22,6 @@ installed sofware:
 nvidia CUDA Toolkit 9.0
 CuDNN 7.1
 CernVM-FS
-ROOT5
 ROOT6
 
 Python applications (both for python2 and python3):
