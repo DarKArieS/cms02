@@ -100,7 +100,7 @@ cd root_v6.12.06
 mkdir BuildDir
 cd BuildDir
 cmake ..
-cmake --build .
+cmake --build . #if fail, see: https://github.com/RobotLocomotion/drake/issues/2087
 source ../bin/thisroot.sh
 
 ● install python3 (for every users)
