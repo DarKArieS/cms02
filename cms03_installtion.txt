@@ -93,6 +93,16 @@ sudo apt-get install libatlas-base-dev
 #root_numpy
 sudo pip install root_numpy
 
+●install local ROOT (compile by myself)
+wget https://root.cern.ch/download/root_v6.12.06.source.tar.gz
+tar -xzvf root_v6.12.06.source.tar.gz
+cd root_v6.12.06
+mkdir BuildDir
+cd BuildDir
+cmake ..
+cmake --build .
+source ../bin/thisroot.sh
+
 ● install python3 (for every users)
 sudo apt-get install python3
 sudo apt-get install python3-pip
