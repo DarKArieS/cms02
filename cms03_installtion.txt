@@ -83,15 +83,14 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 sudo chmod -R 644 /etc/update-motd.d/
 
 ●install local ROOT
-#install old version
-sudo apt-get install root-system
-#download latest binary from ROOT, and source it
+#download latest binary from ROOT, and just source it
 tar -xzvf root_v6.12.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
 source /ROOT6/bin/thisroot.sh
 #ROOT6 TMVA: should install:
 sudo apt-get install libatlas-base-dev
 #root_numpy
-sudo pip install root_numpy
+sudo pip2 install root_numpy
+sudo pip2 install root_pandas
 
 ●install local ROOT (compile by myself)
 wget https://root.cern.ch/download/root_v6.12.06.source.tar.gz
