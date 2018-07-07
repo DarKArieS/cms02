@@ -82,6 +82,15 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 ●remove "welcome" when ssh login":
 sudo chmod -R 644 /etc/update-motd.d/
 
+●pre-install local ROOT
+#check https://root.cern.ch/build-prerequisites
+sudo apt-get install gfortran libssl-dev libpcre3-dev \
+xlibmesa-glu-dev libglew1.5-dev libftgl-dev \
+libmysqlclient-dev libfftw3-dev libcfitsio-dev \
+graphviz-dev libavahi-compat-libdnssd-dev \
+libldap2-dev python-dev libxml2-dev libkrb5-dev \
+libgsl0-dev libqt4-dev
+
 ●install local ROOT
 #download latest binary from ROOT, and just source it
 tar -xzvf root_v6.12.06.Linux-ubuntu16-x86_64-gcc5.4.tar.gz
